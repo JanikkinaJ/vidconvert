@@ -1,0 +1,12 @@
+#!/usr/bin/python
+
+import os
+import subprocess
+
+for filename in os.listdir(os.curdir):
+    if filename.endswith('mkv'):
+        new_filename = filename
+        new_filename = new_filename.replace("mkv", "mp4")
+        subprocess.run(['ffmpeg', '-i', filename, '-codec', 'copy', new_filename])
+    else:
+        continue
