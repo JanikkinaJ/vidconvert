@@ -8,5 +8,9 @@ for filename in os.listdir(os.curdir):
         new_filename = filename
         new_filename = new_filename.replace("mkv", "mp4")
         subprocess.run(['ffmpeg', '-i', filename, '-codec', 'copy', new_filename])
+    elif filename.endswith('avi'):
+        new_filename = filename
+        new_filename = new_filename.replace("avi", "mp4")
+        subprocess.run(['ffmpeg', '-i', filename, new_filename])
     else:
         continue
