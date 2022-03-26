@@ -5,22 +5,26 @@ import subprocess
 mkv = False
 avi = False
 
-def convert():
+def convert(old_type, filename, used):
+    new_filename = filename.replace(old_type, "mp4")
+    subprocess.run(['ffmpeg', '-i', filename, '-codec', 'copy', new_filename])
+    used = true
+
+
+def vidconvert():
     for filename in os.listdir(os.curdir):
         if filename.endswith('mkv'):
-            new_filename = filename
-            new_filename = new_filename.replace("mkv", "mp4")
-            subprocess.run(['ffmpeg', '-i', filename, '-codec', 'copy', new_filename])
-            mkv = True #if atleast one mkv file ist converted
-            # mkv
+            convert("mkv", filename, mkv)
         elif filename.endswith('avi'):
-            new_filename = filename
-            new_filename = new_filename.replace("avi", "mp4")
-            subprocess.run(['ffmpeg', '-i', filename, new_filename])
-            avi = True #if atleast one avi file ist converted
-            # avi
+            convert("avi", filename, avi)
         else:
+            print(filename, " ignored as type isn't supported")
             continue
+    # after converting all possible files folders are created for the created files
+    add_folder(mkv, 'mkv')
+    add_folder(avi, 'avi')
+    add_folder(True, 'mp4')
+
 
 def add_folder(used, vid_type): #creates folder if the filetype given was converted
     if used:
@@ -31,8 +35,4 @@ def add_folder(used, vid_type): #creates folder if the filetype given was conver
             print("Directory", vid_type, " already exists")
 
 
-convert()
-add_folder(mkv, 'mkv')
-add_folder(avi, 'avi')
-add_folder(True, 'mp4')
-
+vidconvert()
