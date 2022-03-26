@@ -2,21 +2,22 @@
 
 import os
 import subprocess
-mkv = False
-avi = False
 
 def convert(old_type, filename, used):
     new_filename = filename.replace(old_type, "mp4")
     subprocess.run(['ffmpeg', '-hide_banner', '-loglevel', 'error','-i', filename, '-codec', 'copy', new_filename])
-    used = true
-
+    print(filename, " was converted to ", new_filename)
 
 def vidconvert():
+    mkv = False
+    avi = False
     for filename in os.listdir(os.curdir):
         if filename.endswith('mkv'):
             convert("mkv", filename, mkv)
+            mkv = True
         elif filename.endswith('avi'):
             convert("avi", filename, avi)
+            avi = True
         else:
             print(filename, " ignored as type isn't supported")
             continue
