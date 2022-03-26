@@ -9,32 +9,34 @@ def convert(old_type, filename, used):
     print(filename, " was converted to ", new_filename)
 
 def vidconvert():
+    # folder created to store all mp4 files
+    add_folder("mp4")
     mkv = False
     avi = False
     for filename in os.listdir(os.curdir):
         if filename.endswith('mkv'):
             convert("mkv", filename, mkv)
+            if not mkv: 
+                add_folder('avi')
             mkv = True
         elif filename.endswith('avi'):
             convert("avi", filename, avi)
+            if not avi:
+                add_folder('avi')
             avi = True
         else:
             print(filename, " ignored as type isn't supported")
             continue
-    # after converting all possible files folders are created for the created files
-    add_folder(mkv, 'mkv')
-    add_folder(avi, 'avi')
-    add_folder(True, 'mp4')
     print("We did our best chief.")
 
 
-def add_folder(used, vid_type): #creates folder if the filetype given was converted
-    if used:
-        try:
-            os.mkdir(vid_type)
-            print("Directory ", vid_type, " created")
-        except FileExistsError:
-            print("Directory", vid_type, " already exists")
+def add_folder(vid_type): #creates folder if the filetype given was converted
+    try:
+        os.mkdir(vid_type)
+        print("Directory ", vid_type, " created")
+    except FileExistsError:
+        print("Directory", vid_type, " already exists")
 
-
+def move_file(filename, filetype): #moves files to a directory corresponding to their typ
+    print("da")
 vidconvert()
