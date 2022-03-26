@@ -7,7 +7,7 @@ avi = False
 
 def convert(old_type, filename, used):
     new_filename = filename.replace(old_type, "mp4")
-    subprocess.run(['ffmpeg', '-i', filename, '-codec', 'copy', new_filename])
+    subprocess.run(['ffmpeg', '-hide_banner', '-loglevel', 'error','-i', filename, '-codec', 'copy', new_filename])
     used = true
 
 
