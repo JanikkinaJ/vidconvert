@@ -24,6 +24,7 @@ def vidconvert():
     add_folder(mkv, 'mkv')
     add_folder(avi, 'avi')
     add_folder(True, 'mp4')
+    print("We did our best chief.")
 
 
 def add_folder(used, vid_type): #creates folder if the filetype given was converted
