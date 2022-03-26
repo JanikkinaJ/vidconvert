@@ -22,4 +22,17 @@ def convert():
         else:
             continue
 
+def add_folder(used, vid_type): #creates folder if the filetype given was converted
+    if used:
+        try:
+            os.mkdir(vid_type)
+            print("Directory ", vid_type, " created")
+        except FileExistsError:
+            print("Directory", vid_type, " already exists")
+
+
 convert()
+add_folder(mkv, 'mkv')
+add_folder(avi, 'avi')
+add_folder(True, 'mp4')
+
