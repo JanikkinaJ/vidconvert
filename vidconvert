@@ -2,6 +2,8 @@
 
 import os
 import subprocess
+mkv = False
+avi = False
 
 def convert():
     for filename in os.listdir(os.curdir):
@@ -9,11 +11,13 @@ def convert():
             new_filename = filename
             new_filename = new_filename.replace("mkv", "mp4")
             subprocess.run(['ffmpeg', '-i', filename, '-codec', 'copy', new_filename])
+            mkv = True #if atleast one mkv file ist converted
             # mkv
         elif filename.endswith('avi'):
             new_filename = filename
             new_filename = new_filename.replace("avi", "mp4")
             subprocess.run(['ffmpeg', '-i', filename, new_filename])
+            avi = True #if atleast one avi file ist converted
             # avi
         else:
             continue
