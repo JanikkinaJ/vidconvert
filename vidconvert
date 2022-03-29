@@ -21,24 +21,27 @@ def convert(old_type, filename):
     sort_file(new_filename, filename, old_type)
 
 # uses convert() and then adds a folder for the type if not already created
-def process(folder_present, filename, endswith):
+def process(folder_present, mp4_folder, filename, endswith):
     if not folder_present: 
         add_folder(endswith)
+    if not mp4_folder:
+        add_folder("mp4")
     convert(endswith, filename)
 
 #checks current directory for supported file types and creates a mp4 version of them
 def vidconvert():
-    # folder created to store all mp4 files
-    add_folder("mp4")
     mkv_folder = False
     avi_folder = False
+    mp4_folder  = False
     for filename in os.listdir(os.curdir):
         if filename.endswith('mkv'):
-            process(mkv_folder, filename, "mkv")
+            process(mkv_folder, mp4_folder, filename, "mkv")
             mkv_folder = True
+            mp4_folder = True
         elif filename.endswith('avi'):
-            process(avi_folder, filename, "avi")
+            process(avi_folder, mp4_folder, filename, "avi")
             avi_folder = True
+            mp4_folder = True
         else:
             print(filename, " ignored as type isn't supported")
             continue
