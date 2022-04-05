@@ -34,11 +34,11 @@ def vidconvert():
     avi_folder = False
     mp4_folder  = False
     for filename in os.listdir(os.curdir):
-        if filename.endswith('mkv'):
+        if filename.endswith('.mkv'):
             process(mkv_folder, mp4_folder, filename, "mkv")
             mkv_folder = True
             mp4_folder = True
-        elif filename.endswith('avi'):
+        elif filename.endswith('.avi'):
             process(avi_folder, mp4_folder, filename, "avi")
             avi_folder = True
             mp4_folder = True
