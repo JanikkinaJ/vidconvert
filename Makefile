@@ -1,2 +1,2 @@
 run:
-	python vidconvert.py 
+	vidconvert 
