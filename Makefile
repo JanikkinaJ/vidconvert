@@ -1,8 +1,9 @@
 run:
-	vidconvert 
+	./vidconvert 
 
 setup: requirements.txt
 	pip install -r requirements.txt
+	cp vidconvert /usr/local/bin/
 
 clean:
 	rm -rf __pycache__
