@@ -8,6 +8,6 @@ of the original files using ffmpeg. Then sorts converted and convertee files int
 - cd vidconvert/
 - sudo make setup
 
-## Use
+## Usage
 after install just move inside the directory where you want to convert files to Mp4 
 then type "vidconvert"
