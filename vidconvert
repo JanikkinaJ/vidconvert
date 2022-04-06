@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
-import tdqm
+from tqdm import tqdm
+from time import sleep
 import os
 import subprocess
 
@@ -12,13 +13,13 @@ def sort_file(new_filename, filename, old_type):
         os.rename(path + filename, path + old_type + "/" + filename)
         os.rename(path + new_filename, path + "mp4/" + new_filename)
     except OSError as error:
-            print(error)
+            tqdm.write(str(error))
 
 # converts a file into mp4 using ffmpeg
 def convert(old_type, filename):
     new_filename = filename.replace(old_type, "mp4")
     subprocess.run(['ffmpeg', '-hide_banner', '-loglevel', 'error','-i', filename, '-codec', 'copy', new_filename])
-    print(filename, " was converted to ", new_filename)
+    tqdm.write(str(filename) + " was converted to " + str(new_filename))
     sort_file(new_filename, filename, old_type)
 
 # uses convert() and then adds a folder for the type if not already created
@@ -34,7 +35,8 @@ def vidconvert():
     mkv_folder = False
     avi_folder = False
     mp4_folder  = False
-    for filename in os.listdir(os.curdir):
+    for filename in tqdm(os.listdir(os.curdir)):
+        sleep(1)
         if filename.endswith('.mkv'):
             process(mkv_folder, mp4_folder, filename, "mkv")
             mkv_folder = True
@@ -44,7 +46,7 @@ def vidconvert():
             avi_folder = True
             mp4_folder = True
         else:
-            print(filename, " ignored as type isn't supported")
+            tqdm.write(str(filename) + " ignored as type isn't supported")
             continue
     print("""
 We did our best chief.
@@ -60,8 +62,8 @@ We did our best chief.
 def add_folder(vid_type): #creates folder
     try:
         os.mkdir(vid_type)
-        print("Directory ", vid_type, " created")
+        tqdm.write("Directory " + str(vid_type) + " created")
     except FileExistsError:
-        print("Directory", vid_type, " already exists")
+        tqdm.write("Directory" + str(vid_type) + " already exists")
 
 vidconvert()
