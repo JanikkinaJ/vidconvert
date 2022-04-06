@@ -35,8 +35,8 @@ def vidconvert():
     mkv_folder = False
     avi_folder = False
     mp4_folder  = False
-    for filename in tqdm(os.listdir(os.curdir)):
-        sleep(1)
+    for filename in tqdm(os.listdir(os.curdir), desc ="Progress", unit =" files"): 
+        sleep(0.5)
         if filename.endswith('.mkv'):
             process(mkv_folder, mp4_folder, filename, "mkv")
             mkv_folder = True
