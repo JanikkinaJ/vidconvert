@@ -6,7 +6,7 @@ of the original files using ffmpeg. Then sorts converted and convertee files int
 ## Install
 - clone repository
 - cd vidconvert/
-- make setup
+- sudo make setup
 
 ## Use
 after install just move inside the directory where you want to convert files to Mp4 
