@@ -5,7 +5,9 @@ from rich.progress import (
         Progress,
         TextColumn,
         )
+from rich.console import Console
 from time import sleep; import os; import subprocess
+console = Console()
 
 workDir = os.curdir # the current working Directory TODO: add ability for user to choose this
 supportedList = ['.mkv', '.avi']
@@ -56,14 +58,11 @@ def vidconvert():
                 sleep(0.2)
                 progress.advance(task)
 
-    print("""
-          _       _                                                _   
-         (_)     | |                                              | |  
- __   __  _    __| |   ___    ___    _ __   __   __   ___   _ __  | |_ 
- \ \ / / | |  / _` |  / __|  / _ \  | '_ \  \ \ / /  / _ \ | '__| | __|
-  \ V /  | | | (_| | | (__  | (_) | | | | |  \ V /  |  __/ | |    | |_ 
-   \_/   |_|  \__,_|  \___|  \___/  |_| |_|   \_/    \___| |_|     \__|
-""")
+    console.print("""
+Thank you for using vidconvert :thumbs_up:
+
+01101010 01100001 01101110 01101001 01101011
+""", style="bold red")
 
 
 if __name__ == "__main__":
