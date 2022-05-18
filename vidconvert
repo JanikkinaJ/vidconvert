@@ -65,4 +65,5 @@ def add_folder(vid_type): #creates folder
     except FileExistsError:
         tqdm.write("Directory" + str(vid_type) + " already exists")
 
-vidconvert()
+if __name__ == "__main__":
+    vidconvert()
