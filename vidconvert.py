@@ -32,9 +32,7 @@ def process(folder_present, mp4_folder, filename, endswith):
 
 #checks current directory for supported file types and creates a mp4 version of them
 def vidconvert():
-    mkv_folder = False
-    avi_folder = False
-    mp4_folder  = False
+    mkv_folder = False; avi_folder = False; mp4_folder  = False
     for filename in tqdm(os.listdir(os.curdir), desc ="Progress", unit =" file", bar_format= '{desc}: {percentage:3.0f}%|{bar}|{n_fmt}/{total_fmt}'): 
         sleep(0.5)
         if filename.endswith('.mkv'):
