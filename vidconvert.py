@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+from rich.progress import Progress #to replace tqdm
 from tqdm import tqdm
 from time import sleep
 import os
@@ -34,7 +35,7 @@ def process(folder_present, mp4_folder, filename, endswith):
 def vidconvert():
     mkv_folder = False; avi_folder = False; mp4_folder  = False
     for filename in tqdm(os.listdir(os.curdir), desc ="Progress", unit =" file", bar_format= '{desc}: {percentage:3.0f}%|{bar}|{n_fmt}/{total_fmt}'): 
-        sleep(0.5)
+        sleep(0.1)
         if filename.endswith('.mkv'):
             process(mkv_folder, mp4_folder, filename, "mkv")
             mkv_folder = True
