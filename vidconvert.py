@@ -9,9 +9,9 @@ from rich.console import Console
 from time import sleep; import os; import subprocess
 import argparse
 console = Console() #creates a console type for Rich text output
-parser = argparse.ArgumentParser(description= 'Mass batch conversion using ffmpeg. Converts video files into Mp4 and then sorts them.')
+parser = argparse.ArgumentParser(description= 'Mass batch conversion using ffmpeg. Converts video files into Mp4 and then sorts them.') 
 parser.add_argument("-v","--verbose", help="increase output verbosity", action="store_true")
-args = parser.parse_args()
+args = parser.parse_args() #argparse used to allow command line arguments
 
 workDir = os.curdir # the current working Directory TODO: add ability for user to choose this
 supportedList = ['.mkv', '.avi'] #supported video types
@@ -49,6 +49,7 @@ def vidconvert():
             )  as progress:
         fileNumber = len([name for name in os.listdir(workDir) if os.path.isfile(name)])
         task = progress.add_task("Progress: ", total=fileNumber)
+        ignored = 0
         for currentFile in os.listdir(workDir):
             extension = os.path.splitext(currentFile)[1]
             if extension in supportedList:
@@ -61,9 +62,13 @@ def vidconvert():
             else:
                 if args.verbose:
                     progress.console.print(f"\"{currentFile}\" ignored as type isn't supported")
+                else:
+                    ignored += 1 
+
                 sleep(0.2)
                 progress.advance(task)
-
+    if not args.verbose:
+        console.print(f"{ignored} files ignored.")
     console.print("""
 Thank you for using vidconvert :thumbs_up:
 
