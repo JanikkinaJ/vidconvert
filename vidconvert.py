@@ -7,10 +7,14 @@ from rich.progress import (
         )
 from rich.console import Console
 from time import sleep; import os; import subprocess
-console = Console()
+import argparse
+console = Console() #creates a console type for Rich text output
+parser = argparse.ArgumentParser(description= 'Mass batch conversion using ffmpeg. Converts video files into Mp4 and then sorts them.')
+parser.add_argument("-v","--verbose", help="increase output verbosity", action="store_true")
+args = parser.parse_args()
 
 workDir = os.curdir # the current working Directory TODO: add ability for user to choose this
-supportedList = ['.mkv', '.avi']
+supportedList = ['.mkv', '.avi'] #supported video types
 
 # move the files into directories named after their types
 def sort_file(newFilename, currentFile, oldType):
@@ -48,13 +52,15 @@ def vidconvert():
         for currentFile in os.listdir(workDir):
             extension = os.path.splitext(currentFile)[1]
             if extension in supportedList:
-                progress.console.print(f"Converting: \"{currentFile}\"")
+                if args.verbose:
+                    progress.console.print(f"Converting: \"{currentFile}\"")
                 add_folder("mp4")
                 add_folder(extension[1:])
                 progress.console.print(convert(extension[1:], currentFile))
                 progress.advance(task)
             else:
-                progress.console.print(f"\"{currentFile}\" ignored as type isn't supported")
+                if args.verbose:
+                    progress.console.print(f"\"{currentFile}\" ignored as type isn't supported")
                 sleep(0.2)
                 progress.advance(task)
 
