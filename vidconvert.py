@@ -62,7 +62,7 @@ def vidconvert():
 Thank you for using vidconvert :thumbs_up:
 
 01101010 01100001 01101110 01101001 01101011
-""", style="bold red")
+""", style="bold red", justify="center")
 
 
 if __name__ == "__main__":
