@@ -11,4 +11,4 @@ Right now vidconvert only supports Linux
 
 ## Usage
 after install just move inside the directory where you want to convert files to mp4, 
-then type `vidconvert`
+then type `vidconvert.py`
