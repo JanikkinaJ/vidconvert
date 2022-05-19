@@ -18,7 +18,7 @@ def sort_file(newFilename, currentFile, oldType):
     try:
         os.rename(path + currentFile, path + oldType + "/" + currentFile)
         os.rename(path + newFilename, path + "mp4/" + newFilename)
-        return "Moved"
+        return f"\"{currentFile}\" was converted to \"{newFilename}\""
     except OSError as error:
         return str(error)
 
@@ -26,8 +26,8 @@ def sort_file(newFilename, currentFile, oldType):
 def convert(oldType, currentFile):
     newFilename = currentFile.replace(oldType, "mp4")
     subprocess.run(['ffmpeg', '-hide_banner', '-loglevel', 'error','-i', currentFile, '-codec', 'copy', newFilename])
-    sort_file(newFilename, currentFile, oldType)
-    return f"\"{currentFile}\" was converted to \"{newFilename}\""
+    output = sort_file(newFilename, currentFile, oldType)
+    return output 
 
 def add_folder(vidType): #creates a folder
     try:
