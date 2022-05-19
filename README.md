@@ -1,11 +1,4 @@
-```
-         _       _                                                _   
-        (_)     | |                                              | |  
-__   __  _    __| |   ___    ___    _ __   __   __   ___   _ __  | |_ 
-\ \ / / | |  / _` |  / __|  / _ \  | '_ \  \ \ / /  / _ \ | '__| | __|
- \ V /  | | | (_| | | (__  | (_) | | | | |  \ V /  |  __/ | |    | |_ 
-  \_/   |_|  \__,_|  \___|  \___/  |_| |_|   \_/    \___| |_|     \__|
-```
+# Vidconvert
 Mass batch conversion using ffmpeg.
 Converts video files into Mp4 and then sorts them
 ## Compatibility
