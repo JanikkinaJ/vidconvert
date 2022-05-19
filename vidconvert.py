@@ -25,8 +25,8 @@ def sort_file(newFilename, currentFile, oldType):
 # converts a file into mp4 using ffmpeg
 def convert(oldType, currentFile):
     newFilename = currentFile.replace(oldType, "mp4")
-    subprocess.run(['ffmpeg', '-hide_banner', '-loglevel', 'error','-i', currentFile, '-codec', 'copy', newFilename])
-    output = sort_file(newFilename, currentFile, oldType)
+    result = subprocess.run(['ffmpeg', '-hide_banner', '-loglevel', 'error','-i', currentFile, '-codec', 'copy', newFilename], text=True, capture_output=True)
+    output = result.stderr + "\n" + sort_file(newFilename, currentFile, oldType)
     return output 
 
 def add_folder(vidType): #creates a folder
