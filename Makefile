@@ -2,7 +2,7 @@ run:
 	./vidconvert 
 
 setup: requirements.txt
-	pip3 install -r requirements.txt
+	pip3 install -r requirements.txt 
 	cp vidconvert.py /usr/local/bin/
 
 clean:
