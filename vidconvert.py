@@ -57,7 +57,7 @@ def vidconvert():
         ignored = 0
         for currentFile in os.listdir(workDir):
             extension = os.path.splitext(currentFile)[1]
-            if extension in supportedList && extension != convertTo:
+            if extension in supportedList and extension != convertTo:
                 if args.verbose:
                     progress.console.print(f"Converting: \"{currentFile}\"")
                 add_folder(convertTo[1:])
