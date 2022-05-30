@@ -8,6 +8,7 @@ from rich.progress import (
 from rich.console import Console
 from time import sleep; import os; import subprocess
 import argparse
+import files
 
 supportedList = ['.mkv', '.avi'] #supported video types
 convertTo = ".mp4"

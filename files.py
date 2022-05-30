@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from enum import Enum
+from enum import Enum, auto
 
 class vType(Enum):
     mp4 = auto()
